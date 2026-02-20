@@ -1,5 +1,10 @@
 # SRS Document Template (ISO/IEC/IEEE 29148)
 
+> **Modular output:** Each major section below maps to a separate file in the
+> `specs/<project-name>/` directory (e.g., Section 1 → `00-introduction.md`,
+> Section 4 → `03-functional-requirements.md`). See the "Modular File
+> Structure" table in SKILL.md for the full mapping.
+
 Use this template to assemble the final SRS document. Replace all `[...]`
 placeholders with project-specific content. Delete sections marked "if
 applicable" when they do not apply.

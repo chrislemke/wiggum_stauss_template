@@ -3,7 +3,11 @@
 SRS Validator — Checks an SRS document for ISO 29148 structural compliance.
 
 Usage:
-    validate_srs.py <path-to-srs.md> [--strict]
+    validate_srs.py <path-to-srs.md-or-directory> [--strict]
+
+Accepts either a single .md file or a directory of .md spec files.
+When given a directory, all *.md files are loaded and validated together,
+with error messages scoped to individual files.
 
 Checks:
   - Required and recommended sections are present
@@ -311,8 +315,31 @@ def check_verification(
 
 # ── Validation ───────────────────────────────────────────────────────────────
 
-def validate_srs(filepath: Path) -> tuple[ValidationResult, dict]:
-    """Validate an SRS document.
+def _load_content(path: Path) -> tuple[str, str | None]:
+    """Load content from a file or directory of .md files.
+
+    When *path* is a directory, all ``*.md`` files are concatenated in sorted
+    order.  Each file's content is prefixed with a marker comment so that
+    downstream error messages can include per-file references.
+
+    Returns (combined_content, label) where *label* is the directory name
+    when a directory was given, or ``None`` for a single file.
+    """
+    if path.is_dir():
+        md_files = sorted(path.glob("*.md"))
+        if not md_files:
+            return "", path.name
+        parts: list[str] = []
+        for md in md_files:
+            parts.append(f"<!-- file: {md.name} -->\n")
+            parts.append(md.read_text(encoding="utf-8"))
+            parts.append("\n")
+        return "".join(parts), path.name
+    return path.read_text(encoding="utf-8"), None
+
+
+def validate_srs(path: Path) -> tuple[ValidationResult, dict]:
+    """Validate an SRS document or directory of spec files.
 
     Returns (ValidationResult, stats_dict).
     """
@@ -327,14 +354,14 @@ def validate_srs(filepath: Path) -> tuple[ValidationResult, dict]:
         "sections_required": len(REQUIRED_SECTIONS),
     }
 
-    if not filepath.exists():
-        result.error(f"File not found: {filepath}")
+    if not path.exists():
+        result.error(f"Path not found: {path}")
         return result, stats
 
-    content = filepath.read_text(encoding="utf-8")
+    content, _dir_label = _load_content(path)
 
     if not content.strip():
-        result.error("File is empty")
+        result.error("No content found (file is empty or directory has no .md files)")
         return result, stats
 
     # Parse sections
@@ -380,9 +407,10 @@ def validate_srs(filepath: Path) -> tuple[ValidationResult, dict]:
 
 # ── Output ───────────────────────────────────────────────────────────────────
 
-def print_report(filepath: Path, result: ValidationResult, stats: dict):
+def print_report(path: Path, result: ValidationResult, stats: dict):
     """Print formatted validation report."""
-    print(f"SRS Validation Report: {filepath.name}")
+    label = path.name + "/" if path.is_dir() else path.name
+    print(f"SRS Validation Report: {label}")
     print("=" * 50)
 
     # Sections
@@ -441,7 +469,10 @@ def main():
     parser = argparse.ArgumentParser(
         description="Validate an SRS document for ISO 29148 structural compliance."
     )
-    parser.add_argument("srs_file", help="Path to the SRS markdown file")
+    parser.add_argument(
+        "srs_path",
+        help="Path to an SRS markdown file or a directory of spec files",
+    )
     parser.add_argument(
         "--strict",
         action="store_true",
@@ -449,19 +480,19 @@ def main():
     )
     args = parser.parse_args()
 
-    filepath = Path(args.srs_file).resolve()
+    path = Path(args.srs_path).resolve()
 
-    if not filepath.suffix == ".md":
-        print(f"Note: File does not have .md extension: {filepath.name}")
+    if path.is_file() and path.suffix != ".md":
+        print(f"Note: File does not have .md extension: {path.name}")
 
-    result, stats = validate_srs(filepath)
+    result, stats = validate_srs(path)
 
     if args.strict and result.warnings:
         # Promote warnings to errors in strict mode
         for w in result.warnings:
             result.error(f"[strict] {w}")
 
-    print_report(filepath, result, stats)
+    print_report(path, result, stats)
     sys.exit(0 if result.ok else 1)
 
 

@@ -17,8 +17,8 @@ description: >-
 
 Produce standards-aligned Software Requirements Specifications with testable
 shall-statements, verification criteria, and full traceability. Output is a
-single markdown file `SRS-<project-name>.md`, with optional companion
-`RTM-<project-name>.md` for the traceability matrix.
+directory of focused spec files under `specs/<project-name>/`, with an optional
+companion `RTM.md` for the traceability matrix.
 
 ## Decision Tree
 
@@ -42,6 +42,26 @@ sections with the user.
 For **Validate & Improve**: run `scripts/validate_srs.py` on the document,
 then analyze quality beyond structure (ambiguous terms, compound requirements,
 missing testability). Present findings grouped by severity.
+
+## Modular File Structure
+
+Write each SRS section to its own file inside `specs/<project-name>/`:
+
+| File | Content |
+|------|---------|
+| `00-introduction.md` | Purpose, scope, definitions, references, overview |
+| `01-product-perspective.md` | System context, product functions, stakeholders, environment, assumptions |
+| `02-external-interfaces.md` | IR-requirements (user, API, hardware, communication) |
+| `03-functional-requirements.md` | FR-requirements (split further by feature area if large) |
+| `04-data-requirements.md` | DR-requirements |
+| `05-non-functional-requirements.md` | NFR-requirements |
+| `06-constraints.md` | CR-requirements |
+| `07-change-control.md` | Version history, baselining policy |
+| `RTM.md` | Traceability matrix (optional, Phase 5) |
+
+**Rule:** Each file should stay **under ~150 lines**. If a file grows beyond
+that, split it further (e.g., `03a-auth-requirements.md`,
+`03b-payment-requirements.md`).
 
 ## Phase 1: Scope & Context
 
@@ -149,17 +169,18 @@ After all requirements are elicited:
 1. Load the full SRS template:
    See [references/srs-template.md](references/srs-template.md)
 
-2. Assemble all elicited content into the template structure.
-   Output file: `SRS-<project-name>.md`
+2. Assemble all elicited content into the modular file structure (see
+   "Modular File Structure" above). Write each section to its own file
+   in the `specs/<project-name>/` directory.
 
-3. Validate the document:
+3. Validate the spec directory:
    ```bash
-   python3 <skill-path>/scripts/validate_srs.py <path-to-srs.md>
+   python3 <skill-path>/scripts/validate_srs.py specs/<project-name>/
    ```
 
 4. Fix any reported errors. Re-run until validation passes.
 
-5. Present the completed SRS to the user for final review.
+5. Present the completed spec files to the user for final review.
 
 ## Phase 5: Traceability (Optional)
 
