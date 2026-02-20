@@ -1,0 +1,27 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info/
+
+# Virtual environments
+.venv
+
+# macOS
+.DS_Store
+
+# Testing & coverage
+.coverage
+.coverage.*
+htmlcov/
+
+# Type checking & linting
+.mypy_cache/
+.ruff_cache/
+
+# Testing tools
+.hypothesis/
+.mutmut-cache/
+.pytest_cache/

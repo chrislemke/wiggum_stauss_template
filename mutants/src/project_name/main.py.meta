@@ -1,0 +1,21 @@
+{
+    "exit_code_by_key": {
+        "project_name.main.x_main__mutmut_1": -11,
+        "project_name.main.x_main__mutmut_2": -11,
+        "project_name.main.x_main__mutmut_3": -11,
+        "project_name.main.x_main__mutmut_4": -11
+    },
+    "hash_by_function_name": {},
+    "durations_by_key": {
+        "project_name.main.x_main__mutmut_2": 0.004359,
+        "project_name.main.x_main__mutmut_3": 0.002875,
+        "project_name.main.x_main__mutmut_4": 0.00741,
+        "project_name.main.x_main__mutmut_1": 0.016171
+    },
+    "estimated_durations_by_key": {
+        "project_name.main.x_main__mutmut_1": 0.0006249989964999259,
+        "project_name.main.x_main__mutmut_2": 0.0006249989964999259,
+        "project_name.main.x_main__mutmut_3": 0.0006249989964999259,
+        "project_name.main.x_main__mutmut_4": 0.0006249989964999259
+    }
+}
