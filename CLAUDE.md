@@ -56,7 +56,4 @@ uv run project_name
 
 ## Dependencies
 
-- **pytest-xdist** — parallel test execution (`-n auto`)
-- **pytest-randomly** — randomizes test order to catch hidden inter-test dependencies
-- **hypothesis** — property-based / generative testing
-- **mutmut** — mutation testing to validate test quality
+-

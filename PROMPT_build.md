@@ -45,10 +45,11 @@ Before implementing:
 ## Phase 5: Implement
 
 Implement the task:
+- Always use the `developing-python` skill
 - Follow existing code patterns
 - Keep changes minimal and focused
-- Use subagents (python-expert-coder) for parallel work when appropriate
-- WRITE TEST FIRST (Classical TDD): write tests (`pytest`, `hypothesis`) that assert expected outputs and state for known inputs, mock only at boundaries (I/O, network, external services), then implement the minimal code to make them pass
+- Use subagents (also using the `developing-python` skill) for parallel work when appropriate
+- WRITE TEST FIRST (Classical TDD) using the `tdd-test-writer` agent
 - All implemented functions and modules MUST include Google-style Python docstrings
 - Respect KISS (keep it stupid simple) and YAGNI (you ain't gonna need it)
 
