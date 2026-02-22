@@ -8,7 +8,7 @@ You are operating in BUILD mode. Your job is to implement ONE task from the plan
 
 1. Read `thoughts/shared/specs/` directory to understand requirements
 2. Read `CLAUDE.md` to understand codebase patterns and commands
-3. Read the `main.py` this file should be the entry point for the application.
+3. Read the `src/project_name/main.py` this file should be the entry point for the application.
 
 ---
 
@@ -27,6 +27,7 @@ Choose the highest priority task that:
 - Has status `pending` (not `in-progress` or `done`)
 - Has no blocking dependencies (or dependencies are `done`)
 - Is P1 before P2 before P3
+- Create a todo list for the task and work step-by-step on it
 
 If no tasks are available, commit any pending changes and exit.
 
