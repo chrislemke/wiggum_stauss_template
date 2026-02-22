@@ -1,6 +1,6 @@
 # RALPH Planning Mode
 
-You are operating in PLANNING mode. Your job is to analyze requirements and create/update the implementation plan.
+You are operating in PLANNING mode. Your job is to analyze requirements deeply and create/update the implementation plan.
 
 **CRITICAL: Plan only. Do NOT implement anything.**
 
@@ -8,16 +8,17 @@ You are operating in PLANNING mode. Your job is to analyze requirements and crea
 
 ## Phase 0: Load Context
 
-1. Read all files in `thoughts/shared/specs/` directory to understand requirements
-2. Read `CLAUDE.md` to understand the codebase and conventions
-3. Read `thoughts/shared/plan/IMPLEMENTATION_PLAN.md` if it exists to see current state
-4. Explore the existing source code to understand what's already built
+1. Read the index file `thoughts/shared/specs/index.md` and identify the next specification file (using the `added to IMPLEMENTATION_PLAN.md` column) that has not been added to the plan
+2. Study the specification file identified in step 1 in great details.
+3. Read `CLAUDE.md` to understand the codebase and conventions
+4. Stufy the `thoughts/shared/plan/IMPLEMENTATION_PLAN.md` if it exists to see current state
+5. Explore the existing source code to understand what's already built - if available
 
 ---
 
 ## Phase 1: Gap Analysis
 
-Compare the requirements (specs) against:
+Compare the selected specification file against:
 - The current implementation plan
 - The existing codebase
 
@@ -32,7 +33,7 @@ Identify:
 
 ## Phase 2: Update Plan
 
-Update `thoughts/shared/plan/IMPLEMENTATION_PLAN.md` with:
+Update `thoughts/shared/plan/IMPLEMENTATION_PLAN.md` with information from the selected specification file:
 
 1. **New tasks** discovered from gap analysis
 2. **Status updates** for tasks already complete in code
@@ -49,7 +50,7 @@ Each task should follow this format:
 **Priority:** P1 (critical) | P2 (important) | P3 (nice-to-have)
 
 ### Description
-What needs to be done and why.
+What needs to be done and why. Keep the description concise and focused.
 
 ### Acceptance Criteria
 - [ ] Specific, testable criterion
@@ -60,8 +61,9 @@ What needs to be done and why.
 
 ## Phase 3: Commit and Exit
 
-1. Commit the updated `thoughts/shared/plan/IMPLEMENTATION_PLAN.md` with message: `docs: update implementation plan` and some helpful description. Do not push.
-2. Exit cleanly
+1. Mark the row of the processed specification file in the `thoughts/shared/specs/index.md` file under `Added to IMPLEMENTATION_PLAN.md` to indicate that it has been added to the plan
+2. Commit the updated `thoughts/shared/plan/IMPLEMENTATION_PLAN.md` with message: `docs: update implementation plan` and some helpful description. Do not push.
+3. Exit cleanly
 
 Pre-commit will run automatically before committing. Fix any issues that arise.
 Do not push!
@@ -72,6 +74,6 @@ Do not push!
 
 - Do NOT write any implementation code
 - Do NOT modify source files
-- Only update `thoughts/shared/plan/IMPLEMENTATION_PLAN.md`
+- Only update `thoughts/shared/plan/IMPLEMENTATION_PLAN.md` and the `thoughts/shared/specs/index.md`
 - Keep tasks small and focused (1-2 hours of work max)
 - Ensure every task has clear acceptance criteria

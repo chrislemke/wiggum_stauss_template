@@ -27,7 +27,6 @@ Choose the highest priority task that:
 - Has status `pending` (not `in-progress` or `done`)
 - Has no blocking dependencies (or dependencies are `done`)
 - Is P1 before P2 before P3
-- Create a todo list for the task and work step-by-step on it
 
 If no tasks are available, commit any pending changes and exit.
 
@@ -46,6 +45,7 @@ Before implementing:
 ## Phase 5: Implement
 
 Implement the task:
+- Create a todo list for the implementation and work step-by-step on it
 - Always use the `developing-python` skill
 - Follow existing code patterns
 - Keep changes minimal and focused
