@@ -1,0 +1,4 @@
+interface:
+  display_name: "Python Senior Practices"
+  short_description: "Senior Python 3.12+ coding standards guidance"
+  default_prompt: "Apply senior-level Python 3.12+ engineering practices: explicit typing, immutable modeling, composable architecture, robust error handling, and practical performance/security defaults."

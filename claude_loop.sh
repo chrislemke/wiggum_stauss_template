@@ -2,11 +2,11 @@
 set -euo pipefail
 
 # RALPH Loop - Autonomous AI Development Loop
-# Usage: ./loop.sh [plan] [max_iterations]
-#   ./loop.sh          → build mode, unlimited iterations
-#   ./loop.sh plan     → planning mode, unlimited iterations
-#   ./loop.sh 10       → build mode, max 10 iterations
-#   ./loop.sh plan 5   → planning mode, max 5 iterations
+# Usage: ./claude_loop.sh [plan] [max_iterations]
+#   ./claude_loop.sh          → build mode, unlimited iterations
+#   ./claude_loop.sh plan     → planning mode, unlimited iterations
+#   ./claude_loop.sh 10       → build mode, max 10 iterations
+#   ./claude_loop.sh plan 5   → planning mode, max 5 iterations
 
 MODE="build"
 MAX_ITERATIONS=0
@@ -23,9 +23,9 @@ done
 
 # Select prompt file based on mode
 if [[ "$MODE" == "plan" ]]; then
-    PROMPT_FILE="PROMPT_plan.md"
+    PROMPT_FILE="claude_PROMPT_plan.md"
 else
-    PROMPT_FILE="PROMPT_build.md"
+    PROMPT_FILE="claude_PROMPT_build.md"
 fi
 
 # Verify prompt file exists

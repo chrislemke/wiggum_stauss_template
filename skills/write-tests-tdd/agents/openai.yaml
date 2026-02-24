@@ -1,0 +1,4 @@
+interface:
+  display_name: "TDD Test Writer"
+  short_description: "Strict Red-Green-Refactor pytest workflows"
+  default_prompt: "Use $write-tests-tdd to create mutation-resistant pytest and Hypothesis tests with strict Red-Green-Refactor execution."

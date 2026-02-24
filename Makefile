@@ -45,9 +45,9 @@ setup:
 	echo "==> Step 4: Replacing project_name with '$$project_name'..."; \
 	OS=$$(uname); \
 	if [ "$$OS" = "Darwin" ]; then \
-		sed -i '' "s/project_name/$$project_name/g" "src/$$project_name/main.py" "src/$$project_name/__main__.py" pyproject.toml CLAUDE.md thoughts/shared/plan/IMPLEMENTATION_PLAN.md; \
+		sed -i '' "s/project_name/$$project_name/g" "src/$$project_name/main.py" "src/$$project_name/__main__.py" pyproject.toml CLAUDE.md AGENTS.md thoughts/shared/plan/IMPLEMENTATION_PLAN.md; \
 	else \
-		sed -i "s/project_name/$$project_name/g" "src/$$project_name/main.py" "src/$$project_name/__main__.py" pyproject.toml CLAUDE.md thoughts/shared/plan/IMPLEMENTATION_PLAN.md; \
+		sed -i "s/project_name/$$project_name/g" "src/$$project_name/main.py" "src/$$project_name/__main__.py" pyproject.toml CLAUDE.md AGENTS.md thoughts/shared/plan/IMPLEMENTATION_PLAN.md; \
 	fi; \
 	\
 	echo "==> Step 5: Installing Python dependencies..."; \

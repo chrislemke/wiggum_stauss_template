@@ -1,0 +1,4 @@
+interface:
+  display_name: "SRS Requirements Writer"
+  short_description: "ISO 29148-aligned modular SRS authoring"
+  default_prompt: "Produce standards-aligned, testable SRS specifications with shall-statements, IADT verification, MoSCoW priorities, and traceability outputs."
