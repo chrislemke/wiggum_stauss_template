@@ -58,15 +58,6 @@ while true; do
         exit 1
     fi
 
-    # Push changes after successful iteration
-    if git rev-parse --git-dir > /dev/null 2>&1; then
-        if [[ -n $(git status --porcelain) ]] || [[ $(git rev-list @{u}..HEAD 2>/dev/null | wc -l) -gt 0 ]]; then
-            echo ""
-            echo "Pushing changes..."
-            git push || echo "Warning: git push failed, continuing..."
-        fi
-    fi
-
     echo ""
     echo "=== Iteration $ITERATION Complete ==="
 done
